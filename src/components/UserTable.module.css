@@ -1,0 +1,41 @@
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  margin-top: 20px;
+  padding: 2rem;
+  padding-top: 1rem;
+  width: 80%;
+  grid-template-areas:
+    "daterange search"
+    "usertable usertable";
+  background-color: #ccc;
+  box-shadow: 5px 10px 18px black;
+}
+
+.range {
+  grid-area: daterange;
+}
+
+.search {
+  grid-area: search;
+}
+
+.table {
+  border: 2px solid black;
+  grid-area: usertable;
+}
+
+.table th {
+  border: 1px solid black;
+  color: white;
+  background-color: black;
+}
+
+.table tr {
+  text-align: left;
+}

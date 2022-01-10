@@ -1,0 +1,18 @@
+.range {
+  margin: 1rem;
+  margin-left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.start,
+.end {
+  padding: 0.5rem;
+  width: 50%;
+}
+
+.start label,
+.end label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
