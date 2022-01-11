@@ -1,0 +1,19 @@
+.statusSuccess {
+  color: #0e800e;
+}
+
+.statusError {
+  color: #d30101;
+}
+
+.statusError:before {
+  content: "•";
+  color: #d30101;
+  margin: 0 10px;
+}
+
+.statusSuccess:before {
+  content: "•";
+  color: #0e800e;
+  margin: 0 10px;
+}

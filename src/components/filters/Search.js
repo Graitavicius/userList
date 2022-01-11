@@ -3,7 +3,7 @@ import classes from "./Search.module.css";
 const Search = () => {
   return (
     <div className={classes.search}>
-      <input placeholder="Search.." />
+      <input placeholder="Search by name.." />
       <button className={classes.button}>
         <svg
           version="1.1"
