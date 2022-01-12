@@ -9,6 +9,9 @@ const tableSlice = createSlice({
     fetchTable(state, action) {
       state.users = action.payload.users;
     },
+    fetchMoreUsers(state, action) {
+      state.users = [...state.users, ...action.payload.users];
+    },
   },
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Notification from "./components/UI/Notification";
-import { fetchTableData } from "./store/table-actions";
+import { fetchTableData, addMoreTableData } from "./store/table-actions";
 import UserTable from "./components/users/UserTable";
 
 let isInitial = true;
@@ -25,6 +25,10 @@ function App() {
       return;
     }
   }, [users, dispatch]);
+
+  window.addCampaigns = function (data) {
+    dispatch(addMoreTableData(data));
+  };
 
   return (
     <React.Fragment>
