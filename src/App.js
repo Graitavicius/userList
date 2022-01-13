@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Notification from "./components/UI/Notification";
@@ -27,7 +27,10 @@ function App() {
   }, [users, dispatch]);
 
   window.addCampaigns = function (data) {
-    dispatch(addMoreTableData(data));
+    const dataString = JSON.stringify(data);
+    const dataObj = JSON.parse(dataString);
+    console.log(dataObj);
+    dispatch(addMoreTableData(dataObj));
   };
 
   return (

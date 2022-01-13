@@ -7,6 +7,7 @@ const User = ({ id, name, startDate, endDate, status, budget }) => {
   } else {
     active = false;
   }
+
   return (
     <tr>
       <td>Campaign {id}</td>

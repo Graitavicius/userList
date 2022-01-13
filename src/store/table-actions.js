@@ -1,5 +1,6 @@
 import { uiActions } from "./ui-slice";
 import { tableActions } from "./table-slice";
+import moment from "moment";
 
 export const fetchTableData = () => {
   return async (dispatch) => {
@@ -13,8 +14,54 @@ export const fetchTableData = () => {
       }
 
       const data = await response.json();
+      console.log(data);
 
-      return data;
+      //implementing mock dates and budget for api without the values
+      // -----------------------------------------------------------
+
+      const budgetArray = [];
+      for (let i = 0; i < data.length; i++) {
+        let budget = Math.floor(Math.random() * 100000);
+        budgetArray.push(budget);
+      }
+
+      function randomDate(start, end) {
+        return new Date(
+          start.getTime() + Math.random() * (end.getTime() - start.getTime())
+        );
+      }
+
+      const startDateArray = [];
+      const endDateArray = [];
+
+      for (let i = 0; i < data.length; i++) {
+        const x = randomDate(new Date(2017, 0, 1), new Date(2019, 11, 31))
+          .toISOString()
+          .split("T")[0];
+        const startDateFormatted = moment(x).format("D/M/yyyy");
+
+        const y = randomDate(new Date(2019, 11, 31), new Date())
+          .toISOString()
+          .split("T")[0];
+
+        const endDateFormatted = moment(y).format("D/M/yyyy");
+
+        startDateArray.push(startDateFormatted);
+        endDateArray.push(endDateFormatted);
+      }
+
+      //--------------------------------------------------
+
+      const transformedData = data.map((userData, index) => {
+        return {
+          id: userData.id,
+          name: userData.name,
+          startDate: startDateArray[index],
+          endDate: endDateArray[index],
+          budget: budgetArray[index],
+        };
+      });
+      return transformedData;
     };
 
     try {
@@ -44,19 +91,35 @@ export const fetchTableData = () => {
 };
 
 export const addMoreTableData = (data) => {
+  const transformedData = data.map((userData) => {
+    return {
+      id: userData.id,
+      name: userData.name,
+      startDate: userData.startDate,
+      endDate: userData.endDate,
+      budget: userData.Budget,
+    };
+  });
+
+  const filteredData = transformedData.filter((data) => {
+    const startObj = new Date(data.startDate);
+    const endObj = new Date(data.endDate);
+    return endObj.getTime() > startObj.getTime();
+  });
+  console.log(transformedData);
+
   return async (dispatch) => {
     try {
-      const tableData = data;
       dispatch(
         tableActions.fetchMoreUsers({
-          users: tableData,
+          users: filteredData,
         })
       );
       dispatch(
         uiActions.showNotification({
           status: "success",
           title: "Success!",
-          message: "Fetched more table data successfully!",
+          message: "Successfully added more campaigns!",
         })
       );
     } catch (error) {

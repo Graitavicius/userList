@@ -1,6 +1,5 @@
 import classes from "./UserTable.module.css";
 
-import { useSelector, useDispatch } from "react-redux";
 import Search from "../filters/Search";
 import DateRange from "../filters/DateRange";
 import React, { useState, useEffect } from "react";
@@ -15,34 +14,6 @@ const UserTable = (props) => {
     randomStatusArray.push(randomStatus);
   }
 
-  // function randomDate(start, end) {
-  //   return new Date(
-  //     start.getTime() + Math.random() * (end.getTime() - start.getTime())
-  //   );
-  // }
-
-  // const startDateArray = [];
-  // const endDateArray = [];
-
-  // for (let i = 0; i < props.users.length; i++) {
-  //   const x = randomDate(new Date(2017, 0, 1), new Date(2019, 11, 31))
-  //     .toISOString()
-  //     .split("T")[0];
-
-  //   const y = randomDate(new Date(2019, 11, 31), new Date())
-  //     .toISOString()
-  //     .split("T")[0];
-
-  //   startDateArray.push(x);
-  //   endDateArray.push(y);
-  // }
-
-  // const budgetArray = [];
-  // for (let i = 0; i < props.users.length; i++) {
-  //   let budget = Math.floor(Math.random() * 10000);
-  //   budgetArray.push(budget);
-  // }
-
   const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
@@ -56,8 +27,6 @@ const UserTable = (props) => {
           user.name.toLowerCase().includes(filterValue.toLowerCase())
         )
       );
-    } else {
-      resetData();
     }
   };
 
@@ -65,10 +34,39 @@ const UserTable = (props) => {
     setFilteredUsers(props.users);
   };
 
+  const filterByDate = (start, end) => {
+    if (start && end) {
+      setFilteredUsers(
+        props.users.filter((user) => {
+          const startDateUsers = user.startDate.split("/").reverse().join("-");
+          const endDateUsers = user.endDate.split("/").reverse().join("-");
+          const rangeStart = start.split("/").reverse().join("-");
+          const rangeEnd = end.split("/").reverse().join("-");
+
+          const startDateUsersObj = new Date(startDateUsers);
+          const endDateUsersObj = new Date(endDateUsers);
+          const rangeStartObj = new Date(rangeStart);
+          const rangeEndObj = new Date(rangeEnd);
+
+          return (
+            rangeStartObj.getTime() <= startDateUsersObj.getTime() &&
+            rangeEndObj.getTime() >= endDateUsersObj.getTime()
+          );
+        })
+      );
+    }
+
+    console.log(start);
+    console.log(end);
+  };
+
   return (
     <div className={classes.content}>
       <div className={classes.container}>
-        <DateRange className={classes.range} />
+        <DateRange
+          className={classes.range}
+          onFilterByDateRange={filterByDate}
+        />
         <Search className={classes.search} onFilter={filterByName} />
         <button className={classes.reset} onClick={resetData}>
           Reset
@@ -87,16 +85,13 @@ const UserTable = (props) => {
           <tbody>
             {filteredUsers.map((user, index) => (
               <User
-                key={user.id}
+                key={user.id + Math.random()}
                 id={user.id}
                 name={user.name}
-                // startDate={startDateArray[index]}
                 startDate={user.startDate}
-                // endDate={endDateArray[index]}
                 endDate={user.endDate}
                 status={randomStatusArray[index]}
-                // budget={budgetArray[index]}
-                budget={user.Budget}
+                budget={user.budget}
               />
             ))}
           </tbody>
