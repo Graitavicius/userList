@@ -1,13 +1,16 @@
 import classes from "./UserTable.module.css";
 
+import { useDispatch } from "react-redux";
 import Search from "../filters/Search";
 import DateRange from "../filters/DateRange";
 import React, { useState, useEffect } from "react";
 import User from "./User";
+import { uiActions } from "../../store/ui-slice";
 
 const UserTable = (props) => {
   const status = ["Active", "Inactive"];
   const randomStatusArray = [];
+  const dispatch = useDispatch();
 
   for (let i = 0; i < props.users.length; i++) {
     const randomStatus = status[Math.floor(Math.random() * status.length)];
@@ -28,20 +31,34 @@ const UserTable = (props) => {
         )
       );
     }
+    dispatch(
+      uiActions.showNotification({
+        status: "success",
+        title: "Success!",
+        message: "Showing filtered by name users",
+      })
+    );
   };
 
   const resetData = () => {
     setFilteredUsers(props.users);
+    dispatch(
+      uiActions.showNotification({
+        status: "success",
+        title: "Success!",
+        message: "Showing all users",
+      })
+    );
   };
 
   const filterByDate = (start, end) => {
     if (start && end) {
       setFilteredUsers(
         props.users.filter((user) => {
-          const startDateUsers = user.startDate.split("/").reverse().join("-");
-          const endDateUsers = user.endDate.split("/").reverse().join("-");
-          const rangeStart = start.split("/").reverse().join("-");
-          const rangeEnd = end.split("/").reverse().join("-");
+          const startDateUsers = user.startDate.split("/").join("-");
+          const endDateUsers = user.endDate.split("/").join("-");
+          const rangeStart = start.split("/").join("-");
+          const rangeEnd = end.split("/").join("-");
 
           const startDateUsersObj = new Date(startDateUsers);
           const endDateUsersObj = new Date(endDateUsers);
@@ -55,9 +72,13 @@ const UserTable = (props) => {
         })
       );
     }
-
-    console.log(start);
-    console.log(end);
+    dispatch(
+      uiActions.showNotification({
+        status: "success",
+        title: "Success!",
+        message: "Showing filtered by date range users",
+      })
+    );
   };
 
   return (

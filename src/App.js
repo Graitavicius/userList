@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Notification from "./components/UI/Notification";
@@ -12,7 +12,6 @@ function App() {
 
   const users = useSelector((state) => state.table.users);
   const date = useSelector((state) => state.table.date);
-
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {

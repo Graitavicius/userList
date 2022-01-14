@@ -1,20 +1,54 @@
-@import url("https://cdn.syncfusion.com/ej2/material.css");
-
 .range {
   margin: 1rem;
   margin-left: 0;
   display: flex;
-  justify-content: center;
 }
 
-.start,
-.end {
-  padding: 0.5rem;
-  width: 50%;
+.range-start input,
+.range-end input {
+  width: 180px;
+  padding: 6px;
+  padding-left: 0px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 13px;
+  outline: none;
+  background-color: #ccc;
+  color: rgba(0, 0, 0, 0.87);
 }
 
-.start label,
-.end label {
-  margin-right: 0.5rem;
+.range-start input:first-of-type {
+  margin-right: 1rem;
+}
+
+.range-start label,
+.range-end label {
+  display: block;
+  font-size: 1rem;
   font-weight: bold;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.range-start input:focus,
+.range-end input:focus {
+  padding-bottom: 5px;
+  border-bottom: 2px solid red;
+}
+
+.filter-button {
+  margin-left: 0.5rem;
+  width: 50px;
+  height: 20px;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  outline: none;
+  font-weight: bold;
+  border: none;
+}
+
+.filter-button:hover,
+.filter-button:focus {
+  background-color: white;
+  box-shadow: 2px 2px 5px black;
 }

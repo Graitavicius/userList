@@ -6,11 +6,37 @@
   justify-content: end;
 }
 
-.search input {
-  width: 200px;
+.search-button {
+  margin-left: 0.5rem;
+  width: 60px;
+  height: 20px;
+  justify-self: end;
+  align-self: center;
+  border-radius: 5px;
+  outline: none;
+  font-weight: bold;
+  border: none;
 }
 
-.button {
-  width: 40px;
-  text-align: center;
+.search-button:hover,
+.search-button:focus {
+  background-color: white;
+  box-shadow: 2px 2px 5px black;
+}
+
+.search-input {
+  width: 200px;
+  padding: 6px;
+  padding-left: 0px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 13px;
+  outline: none;
+  background-color: #ccc;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.search-input:focus {
+  padding-bottom: 5px;
+  border-bottom: 2px solid red;
 }

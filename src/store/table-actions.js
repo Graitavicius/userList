@@ -14,7 +14,6 @@ export const fetchTableData = () => {
       }
 
       const data = await response.json();
-      console.log(data);
 
       //implementing mock dates and budget for api without the values
       // -----------------------------------------------------------
@@ -38,13 +37,13 @@ export const fetchTableData = () => {
         const x = randomDate(new Date(2017, 0, 1), new Date(2019, 11, 31))
           .toISOString()
           .split("T")[0];
-        const startDateFormatted = moment(x).format("D/M/yyyy");
+        const startDateFormatted = moment(x).format("M/D/yyyy");
 
         const y = randomDate(new Date(2019, 11, 31), new Date())
           .toISOString()
           .split("T")[0];
 
-        const endDateFormatted = moment(y).format("D/M/yyyy");
+        const endDateFormatted = moment(y).format("M/D/yyyy");
 
         startDateArray.push(startDateFormatted);
         endDateArray.push(endDateFormatted);
