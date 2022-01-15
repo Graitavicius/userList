@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Available Global Methods (called from browser console)
 
-# AddCampaigns();
+AddCampaigns();
 This method takes a JSON object, transforms it and populates the table with the data.
 
 ## Available Scripts
