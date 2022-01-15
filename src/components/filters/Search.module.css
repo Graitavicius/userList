@@ -38,5 +38,5 @@
 
 .search-input:focus {
   padding-bottom: 5px;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #015c34;
 }

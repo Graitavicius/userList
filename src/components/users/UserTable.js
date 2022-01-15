@@ -8,14 +8,8 @@ import User from "./User";
 import { uiActions } from "../../store/ui-slice";
 
 const UserTable = (props) => {
-  const status = ["Active", "Inactive"];
-  const randomStatusArray = [];
+  const [status, setStatus] = useState("Inactive");
   const dispatch = useDispatch();
-
-  for (let i = 0; i < props.users.length; i++) {
-    const randomStatus = status[Math.floor(Math.random() * status.length)];
-    randomStatusArray.push(randomStatus);
-  }
 
   const [filteredUsers, setFilteredUsers] = useState([]);
 
@@ -65,6 +59,10 @@ const UserTable = (props) => {
           const rangeStartObj = new Date(rangeStart);
           const rangeEndObj = new Date(rangeEnd);
 
+          if (rangeStartObj.getTime() <= startDateUsersObj.getTime()) {
+            setStatus("Active");
+          }
+
           return (
             rangeStartObj.getTime() <= startDateUsersObj.getTime() &&
             rangeEndObj.getTime() >= endDateUsersObj.getTime()
@@ -104,14 +102,14 @@ const UserTable = (props) => {
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user, index) => (
+            {filteredUsers.map((user) => (
               <User
                 key={user.id + Math.random()}
                 id={user.id}
                 name={user.name}
                 startDate={user.startDate}
                 endDate={user.endDate}
-                status={randomStatusArray[index]}
+                status={status}
                 budget={user.budget}
               />
             ))}

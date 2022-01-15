@@ -25,10 +25,9 @@ function App() {
     }
   }, [users, dispatch]);
 
-  window.addCampaigns = function (data) {
+  window.AddCampaigns = function (data) {
     const dataString = JSON.stringify(data);
     const dataObj = JSON.parse(dataString);
-    console.log(dataObj);
     dispatch(addMoreTableData(dataObj));
   };
 

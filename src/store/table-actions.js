@@ -57,6 +57,7 @@ export const fetchTableData = () => {
           name: userData.name,
           startDate: startDateArray[index],
           endDate: endDateArray[index],
+          status: "Inactive",
           budget: budgetArray[index],
         };
       });
@@ -105,7 +106,6 @@ export const addMoreTableData = (data) => {
     const endObj = new Date(data.endDate);
     return endObj.getTime() > startObj.getTime();
   });
-  console.log(transformedData);
 
   return async (dispatch) => {
     try {
@@ -132,45 +132,3 @@ export const addMoreTableData = (data) => {
     }
   };
 };
-
-// export const addMoreUsers = (data) => {
-//   return async (dispatch) => {
-//     const addUsers = async () => {
-//       const response = await fetch(
-//         "https://jsonplaceholder.typicode.com/users"
-//       );
-
-//       if (!response.ok) {
-//         throw new Error("Couldnt fetch data!");
-//       }
-
-//       const data = await response.json();
-
-//       return data;
-//     };
-
-//     try {
-//       const tableData = await addUsers();
-//       dispatch(
-//         tableActions.fetchTable({
-//           users: tableData,
-//         })
-//       );
-//       dispatch(
-//         uiActions.showNotification({
-//           status: "success",
-//           title: "Success!",
-//           message: "Fetched table data successfully!",
-//         })
-//       );
-//     } catch (error) {
-//       dispatch(
-//         uiActions.showNotification({
-//           status: "error",
-//           title: "Error!",
-//           message: "Fetching table data failed",
-//         })
-//       );
-//     }
-//   };
-// };
