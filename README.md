@@ -2,6 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Available Global Methods (called from browser console)
+
+AddCampaigns();
+This method takes a JSON object, transforms it and populates the table with the data.
+
 ## Available Scripts
 
 In the project directory, you can run:
