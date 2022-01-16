@@ -78,6 +78,10 @@ export const fetchTableData = () => {
           message: "Fetched table data successfully!",
         })
       );
+      setTimeout((timer) => {
+        dispatch(uiActions.removeNotification());
+        clearTimeout(timer);
+      }, 3000);
     } catch (error) {
       dispatch(
         uiActions.showNotification({
@@ -86,6 +90,10 @@ export const fetchTableData = () => {
           message: "Fetching table data failed",
         })
       );
+      setTimeout((timer) => {
+        dispatch(uiActions.removeNotification());
+        clearTimeout(timer);
+      }, 3000);
     }
   };
 };
@@ -121,6 +129,10 @@ export const addMoreTableData = (data) => {
           message: "Successfully added more campaigns!",
         })
       );
+      setTimeout((timer) => {
+        dispatch(uiActions.removeNotification());
+        clearTimeout(timer);
+      }, 3000);
     } catch (error) {
       dispatch(
         uiActions.showNotification({
@@ -129,6 +141,10 @@ export const addMoreTableData = (data) => {
           message: "Fetching more data failed",
         })
       );
+      setTimeout((timer) => {
+        dispatch(uiActions.removeNotification());
+        clearTimeout(timer);
+      }, 3000);
     }
   };
 };

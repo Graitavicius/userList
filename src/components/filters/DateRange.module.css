@@ -47,6 +47,13 @@
   border: none;
 }
 
+.filter-button:disabled,
+.filter-button:disabled:hover,
+.filter-button:disabled:focus {
+  background-color: #eee;
+  box-shadow: none;
+}
+
 .filter-button:hover,
 .filter-button:focus {
   background-color: white;

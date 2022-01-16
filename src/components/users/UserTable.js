@@ -32,6 +32,10 @@ const UserTable = (props) => {
         message: "Showing filtered by name users",
       })
     );
+    setTimeout((timer) => {
+      dispatch(uiActions.removeNotification());
+      clearTimeout(timer);
+    }, 3000);
   };
 
   const resetData = () => {
@@ -43,6 +47,10 @@ const UserTable = (props) => {
         message: "Showing all users",
       })
     );
+    setTimeout((timer) => {
+      dispatch(uiActions.removeNotification());
+      clearTimeout(timer);
+    }, 3000);
   };
 
   const filterByDate = (start, end) => {
@@ -77,6 +85,10 @@ const UserTable = (props) => {
         message: "Showing filtered by date range users",
       })
     );
+    setTimeout((timer) => {
+      dispatch(uiActions.removeNotification());
+      clearTimeout(timer);
+    }, 3000);
   };
 
   return (

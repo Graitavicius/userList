@@ -39,6 +39,7 @@ const DateRange = (props) => {
         />
       </div>
       <button
+        disabled={!rangeStartValue || !rangeEndValue}
         type="button"
         className={classes["filter-button"]}
         onClick={filterByDateHandler}
